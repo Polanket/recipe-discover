@@ -1,25 +1,33 @@
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid my-4">
+  <div class="row text-center mb-4">
     <h1>Recipe Discoverer</h1>
   </div>
+
   <div class="row">
-    <div class="col-3" data-controller="ingredients-filter">
-      <%= form_with(url: recipes_path, method: :get) do |form| %>
-        <%= form.text_field :query, class: 'class', data: { 'ingredients-filter-target': 'input', action: 'input->ingredients-filter#search'} %>
-      <% end %>
+    <div class="col-3 overflow-y-scroll" style="max-height: 100vh;" data-controller="ingredients-filter">
+      <div class="row text-center">
+        <h3>Ingredients</h3>
+      </div>
+      <div class="row mb-2">
+        <%= form_with(url: recipes_path, method: :get) do |form| %>
+          <%= form.text_field :query, class: 'form-control', data: { 'ingredients-filter-target': 'input', action: 'input->ingredients-filter#search'}, placeholder: 'Look for ingredients...' %>
+        <% end %>
+      </div>
+
       <div class="row" data-ingredients-filter-target="list">
         <% @ingredients.each do |ingr| %>
           <div class="col-12">
-            <input type="checkbox" id="<%= ingr.id %>" name="<%= ingr.name.underscore %>" value="<%= ingr.id %>" data-ingredients-filter-target="checkbox" data-action="change->ingredients-filter#triggerCheckbox" />
-            <label for=<%= ingr.name.underscore %>><%= ingr.name.titleize %></label>
+            <input class="form-check-input" type="checkbox" id="<%= ingr.id %>" name="<%= ingr.name.underscore %>" value="<%= ingr.id %>" data-ingredients-filter-target="checkbox" data-action="change->ingredients-filter#triggerCheckbox" />
+            <label class="form-check-label" for=<%= ingr.name.underscore %>><%= truncate(ingr.name.titleize, length: 50) %></label>
           </div>
         <% end %>
       </div>
     </div>
+
     <div class="col-9">
-      <div class="row">
-        <h2>Top rated recipes</h2>
+      <div class="row text-center">
       </div>
+
       <div class="row" id="recipes">
         <%= turbo_frame_tag "recipes_turbo", src: recipes_path(format: 'turbo_stream'), loading: 'lazy', target: :replace %>
       </div>
