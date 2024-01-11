@@ -10,31 +10,18 @@
       <div class="row" data-ingredients-filter-target="list">
         <% @ingredients.each do |ingr| %>
           <div class="col-12">
-            <input type="checkbox" id="<%= ingr.id %>" name="<%= ingr.name.underscore %>" value="<%= ingr.id %>" />
+            <input type="checkbox" id="<%= ingr.id %>" name="<%= ingr.name.underscore %>" value="<%= ingr.id %>" data-ingredients-filter-target="checkbox" data-action="change->ingredients-filter#triggerCheckbox" />
             <label for=<%= ingr.name.underscore %>><%= ingr.name.titleize %></label>
           </div>
         <% end %>
       </div>
     </div>
-    <div class="col-7">
+    <div class="col-9">
       <div class="row">
         <h2>Top rated recipes</h2>
       </div>
-      <div class="row">
-        <% @recipes.each do |recipe| %>
-          <div class="col-4">
-            <div class="card">
-              <img src="<%= recipe.image_url %>" class="card-img-top" alt="<%= recipe.title %>">
-              <div class="card-body">
-                <h5 class="card-title"><%= recipe.title %></h5>
-                <% recipe.ingredients.each do |ingredient| %>
-                  <p class="card-text"><%= ingredient %></p>
-                <% end %>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-        <% end %>
+      <div class="row" id="recipes">
+        <%= turbo_frame_tag "recipes_turbo", src: recipes_path(format: 'turbo_stream'), loading: 'lazy', target: :replace %>
       </div>
     </div>
   </div>
