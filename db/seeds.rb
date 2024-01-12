@@ -12,7 +12,7 @@ def clean_up_ingredients(ingredients)
 
   ingredients.map do |ingredient|
     cleaned_ingredient = ingredient.gsub(/\b(?:#{Regexp.union(words_to_remove).source})\b|[^\w\s]/, ' ').strip
-    cleaned_ingredient = cleaned_ingredient.gsub(/\s+/, ' ').titleize
+    cleaned_ingredient = cleaned_ingredient.gsub(/\s+/, ' ').titleize.pluralize(1)
 
     cleaned_ingredient
   end
