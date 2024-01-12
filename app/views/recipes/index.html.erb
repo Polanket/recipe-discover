@@ -18,7 +18,7 @@
         <% @ingredients.each do |ingr| %>
           <div class="col-12">
             <input class="form-check-input" type="checkbox" id="<%= ingr.id %>" name="<%= ingr.name.underscore %>" value="<%= ingr.id %>" data-ingredients-filter-target="checkbox" data-action="change->ingredients-filter#triggerCheckbox" />
-            <label class="form-check-label" for=<%= ingr.name.underscore %>><%= truncate(ingr.name.titleize, length: 50) %></label>
+            <label class="form-check-label" for=<%= ingr.name.underscore %>><%= truncate(ingr.name.titleize, length: 30) %></label>
           </div>
         <% end %>
       </div>

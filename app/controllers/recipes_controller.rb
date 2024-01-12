@@ -9,6 +9,6 @@ class RecipesController < ApplicationController
     @recipes = @recipes.where(recipe_ingredients: { ingredient_id: params[:query].split(',') })
                                 .order('ingredient_matches DESC, total_ingredients ASC') if params[:query].present?
 
-    @ingredients = Ingredient.first(500)
+    @ingredients = Ingredient.common_ingredients
   end
 end
