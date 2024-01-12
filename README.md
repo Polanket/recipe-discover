@@ -22,6 +22,9 @@ Yarn version: **1.22.19**
 
 Postgresql version: **14.10**
 
+Database diagram:
+https://dbdiagram.io/d/65a13624ac844320aecb1747
+
 1. Clone the repository:
 ```shell
 git clone https://github.com/Polanket/recipe-discover.git
