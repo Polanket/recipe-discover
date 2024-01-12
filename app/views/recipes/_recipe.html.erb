@@ -7,8 +7,25 @@
         <div class="progress-bar progress-bar-striped progress-bar-animated text-center" style="width: <%= (recipe.ingredient_matches.to_f / recipe.total_ingredients.to_f)*100 %>%"><%= recipe.ingredient_matches %>/<%= recipe.total_ingredients %> ingredients</div>
       </div>
     <% end %>
-    <div class="card-body">
+    <div class="card-body text-center">
+      <p class="fw-bold"><%= recipe.category.present? ? recipe.category : 'None' %></p>
       <h5 class="card-title"><%= recipe.title %></h5>
+      <p>by</p>
+      <p class="fw-bold mt-0"><%= recipe.author %></p>
+      <div class="row text-center">
+        <div class="col">
+          <p class="fw-bold"><%= recipe.ratings %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p>Prep time: <%= recipe.prep_time %></p>
+        </div>
+
+        <div class="col">
+          <p>Cook time: <%= recipe.cook_time %></p>
+        </div>
+      </div>
     </div>
 
     <div class="accordion" id="recipe_<%= recipe.id %>_parent">
