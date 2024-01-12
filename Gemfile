@@ -52,7 +52,6 @@ gem 'activerecord-import'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
-  gem 'prettyprint', '~> 0.2.0'
 end
 
 group :development do
@@ -66,3 +65,5 @@ group :development do
   # gem "spring"
 end
 
+
+gem "dockerfile-rails", ">= 1.6", :group => :development
